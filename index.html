@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>test</title>
+    </head>
+
+<body>
+<script>
+
+int x1[] = {}, y1[] = {}, x2[] = {}, y2[] = {};
+
+void setup (){
+ rectMode(CORNERS);
+ fullScreen();
+ x1= append(x1,0);
+ y1=append(y1,0);
+ x2=append(x2,width);
+ y2=append(y2,height);
+ fill(random(255),random(255),random(255));
+ rect(x1[0],y1[0],x2[0],y2[0]);
+}
+
+void addAndDisplayRectangle(int newx1, int newy1, int newx2, int newy2){
+  fill(random(255),random(255),random(255));
+ rect(newx1,newy1,newx2,newy2);
+ x1=append(x1,newx1);
+ y1=append(y1,newy1);
+ x2=append(x2,newx2);
+ y2=append(y2,newy2);
+}
+
+void mousePressed(){
+ for (int i=0; i<x1.length; i++){
+   if(x1[i] < mouseX && mouseX < x2[i] && y1[i] < mouseY && mouseY < y2[i]){
+    addAndDisplayRectangle(mouseX,y1[i],x2[i],mouseY); 
+    addAndDisplayRectangle(x1[i],mouseY,mouseX,y2[i]);
+    addAndDisplayRectangle(mouseX,mouseY,x2[i],y2[i]);
+    x2[i]=mouseX;
+    y2[i]=mouseY;
+   }
+}
+}
+
+void draw(){}
+</script>
+</body>
+</html>
